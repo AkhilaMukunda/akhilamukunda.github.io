@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Complaints Analytics — Akhila Mukunda</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f0f0e;
+  --surface:#1a1a19;
+  --text:#f0efe9;
+  --muted:#898781;
+  --accent:#4a90d9;
+  --accent-light:#0d2340;
+  --border:#2c2c2a;
+  --tag-bg:#242422;
+  --success:#1baf7a;
+  --success-light:#0a2e1f;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+nav{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;z-index:100}
+.back-btn{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.back-btn:hover{color:var(--text);text-decoration:none}
+.nav-title{font-size:13px;color:var(--muted);font-family:'DM Mono',monospace}
+
+.hero{max-width:900px;margin:0 auto;padding:3rem 2rem 2rem}
+.eyebrow{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
+.hero h1{font-size:clamp(1.5rem,3.5vw,2.25rem);font-weight:400;line-height:1.2;margin-bottom:1rem;letter-spacing:-0.01em}
+.hero-desc{font-size:15px;color:var(--muted);max-width:620px;line-height:1.7;margin-bottom:1.5rem}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:2rem}
+.tag{font-family:'DM Mono',monospace;font-size:11px;background:var(--tag-bg);color:var(--muted);padding:3px 10px;border-radius:4px;border:1px solid var(--border)}
+.tag-accent{background:var(--accent-light);color:var(--accent);border-color:var(--accent-light)}
+
+.content{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
+
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:2rem}
+.metric{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem}
+.metric-label{font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.metric-value{font-size:24px;font-weight:500;color:var(--text)}
+.metric-sub{font-size:11px;color:var(--muted);margin-top:2px}
+
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin-bottom:1rem}
+.chart-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.chart-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:1rem}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px;font-size:12px;color:var(--muted)}
+.legend-item{display:flex;align-items:center;gap:5px}
+.legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+
+.insight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-bottom:2rem}
+.insight-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
+.insight-card .insight-label{font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px}
+.insight-card .insight-text{font-size:14px;color:var(--text);line-height:1.6}
+.insight-card .insight-stat{font-size:20px;font-weight:500;color:var(--accent);margin-bottom:4px}
+
+.section-divider{border:none;border-top:1px solid var(--border);margin:2rem 0}
+
+footer{max-width:900px;margin:0 auto;padding:1.5rem 2rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-text{font-size:13px;color:var(--muted)}
+.footer-links{display:flex;gap:1.5rem;font-size:13px}
+.footer-links a{color:var(--muted)}
+.footer-links a:hover{color:var(--text);text-decoration:none}
+
+@media(max-width:600px){.chart-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="back-btn" href="index.html">← Back to portfolio</a>
+  <span class="nav-title">complaints analytics</span>
+</nav>
+
+<section class="hero">
+  <p class="eyebrow">Project — Regulatory Analytics</p>
+  <h1>Customer Complaints Analytics<br>& Classification</h1>
+  <p class="hero-desc">End-to-end analysis of 50,000 CFPB consumer financial complaints from 2015–2024, covering trend analysis, SQL querying, hypothesis testing, and NLP-based complaint classification.</p>
+  <div class="tag-row">
+    <span class="tag tag-accent">Python</span>
+    <span class="tag tag-accent">SQL</span>
+    <span class="tag tag-accent">Scikit-learn</span>
+    <span class="tag tag-accent">NLP</span>
+    <span class="tag tag-accent">Matplotlib</span>
+    <span class="tag tag-accent">Seaborn</span>
+    <span class="tag">Dataset: CFPB Consumer Complaints</span>
+    <span class="tag">50,000 rows</span>
+    <span class="tag">2015–2024</span>
+  </div>
+</section>
+
+<div class="content">
+
+  <div class="metrics">
+    <div class="metric"><div class="metric-label">total complaints</div><div class="metric-value">50,000</div><div class="metric-sub">2015–2024 sample</div></div>
+    <div class="metric"><div class="metric-label">top category</div><div class="metric-value">59.8%</div><div class="metric-sub">Credit Reporting</div></div>
+    <div class="metric"><div class="metric-label">yearly growth</div><div class="metric-value">+1,008</div><div class="metric-sub">complaints/year avg</div></div>
+    <div class="metric"><div class="metric-label">model accuracy</div><div class="metric-value">86%</div><div class="metric-sub">NLP classifier</div></div>
+    <div class="metric"><div class="metric-label">timely response</div><div class="metric-value">~97%</div><div class="metric-sub">across all categories</div></div>
+    <div class="metric"><div class="metric-label">peak growth</div><div class="metric-value">+69%</div><div class="metric-sub">YoY in 2022</div></div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-label">volume</div>
+      <div class="chart-title">Complaints by category</div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#4a90d9"></span>complaint count</span></div>
+      <div style="position:relative;width:100%;height:200px">
+        <canvas id="catChart" role="img" aria-label="Horizontal bar chart of complaints by category. Credit Reporting leads with 29,910.">Credit Reporting 29910, Debt Collection 6579, Loans 5653, Credit Card Services 4004, Bank Accounts 3854.</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-label">response rate</div>
+      <div class="chart-title">Timely response by category (%)</div>
+      <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#1baf7a"></span>% timely</span></div>
+      <div style="position:relative;width:100%;height:200px">
+        <canvas id="respChart" role="img" aria-label="Bar chart showing timely response rates per category, all between 95% and 99%.">All categories show high timely response rates.</canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-label">trend</div>
+    <div class="chart-title">Complaint volume over time (2015–2024)</div>
+    <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#4a90d9"></span>annual complaints</span></div>
+    <div style="position:relative;width:100%;height:220px">
+      <canvas id="timeChart" role="img" aria-label="Line chart showing complaint volume growing steadily from 2015 to 2023 with a sharp spike in 2022-2023.">Complaints grew from 1,342 in 2015 to 12,116 in 2023.</canvas>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-label">companies</div>
+      <div class="chart-title">Top 10 companies by complaints</div>
+      <div style="position:relative;width:100%;height:280px">
+        <canvas id="compChart" role="img" aria-label="Horizontal bar chart. Equifax, TransUnion, and Experian dominate with over 8,000 complaints each.">Credit bureaus dominate the top 3 spots.</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-label">growth</div>
+      <div class="chart-title">Year-over-year growth (%)</div>
+      <div style="position:relative;width:100%;height:280px">
+        <canvas id="yoyChart" role="img" aria-label="Bar chart of year over year growth. 2022 shows highest at 69%. 2024 shows negative due to partial year.">2022 saw the highest YoY growth at 69%.</canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-label">machine learning</div>
+    <div class="chart-title">NLP classifier performance by category (Random Forest, 86% overall accuracy)</div>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#4a90d9"></span>precision</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#1baf7a"></span>recall</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#eda100"></span>F1 score</span>
+    </div>
+    <div style="position:relative;width:100%;height:220px">
+      <canvas id="mlChart" role="img" aria-label="Grouped bar chart of precision, recall, and F1 score per category. Credit Reporting has the highest F1 at 0.92.">Random Forest classifier trained on TF-IDF features from complaint narratives.</canvas>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <div class="insight-grid">
+    <div class="insight-card">
+      <div class="insight-label">Statistical finding</div>
+      <div class="insight-stat">T=21.3, p≈0</div>
+      <div class="insight-text">Credit Reporting response rates are statistically significantly different from all other categories — confirmed via independent samples t-test.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">Growth trend</div>
+      <div class="insight-stat">R²=0.78</div>
+      <div class="insight-text">Linear regression confirms a strong upward trend of ~1,008 additional complaints per year across the dataset period.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">Market concentration</div>
+      <div class="insight-stat">3 companies</div>
+      <div class="insight-text">Equifax, TransUnion, and Experian together account for the majority of all Credit Reporting complaints — a striking concentration in one sub-sector.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-text">Akhila Mukunda — Data Analyst</span>
+  <div class="footer-links">
+    <a href="index.html">Portfolio</a>
+    <a href="https://github.com/AkhilaMukunda/complaints-analytics" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/akhilamukunda/" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const muted='#898781';
+const grid='#2c2c2a';
+const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:muted,font:{size:11}},grid:{color:grid}},y:{ticks:{color:muted,font:{size:11}},grid:{color:grid}}}};
+
+new Chart(document.getElementById('catChart'),{type:'bar',data:{labels:['Credit Reporting','Debt Collection','Loans','Credit Card Svc','Bank Accounts'],datasets:[{data:[29910,6579,5653,4004,3854],backgroundColor:'#4a90d9',borderRadius:4}]},options:{...base,indexAxis:'y',scales:{x:{ticks:{color:muted,font:{size:11}},grid:{color:grid}},y:{ticks:{color:muted,font:{size:10}},grid:{display:false}}}}});
+
+new Chart(document.getElementById('respChart'),{type:'bar',data:{labels:['Bank Accts','Credit Card','Credit Rep','Debt Coll','Loans'],datasets:[{data:[98.9,96.3,98.6,97.1,98.2],backgroundColor:'#1baf7a',borderRadius:4}]},options:{...base,scales:{x:{ticks:{color:muted,font:{size:10}},grid:{display:false}},y:{min:90,max:100,ticks:{color:muted,font:{size:11}},grid:{color:grid}}}}});
+
+new Chart(document.getElementById('timeChart'),{type:'line',data:{labels:['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'],datasets:[{data:[1342,1925,2937,2948,2974,4390,4947,8378,12116,8043],borderColor:'#4a90d9',backgroundColor:'rgba(74,144,217,0.08)',borderWidth:2,pointRadius:4,pointBackgroundColor:'#4a90d9',fill:true,tension:0.3}]},options:{...base}});
+
+new Chart(document.getElementById('compChart'),{type:'bar',data:{labels:['Navient','Synchrony','Citibank','Capital One','BofA','JPMorgan','Wells Fargo','Experian','TransUnion','Equifax'],datasets:[{data:[420,460,580,680,700,720,750,8200,8500,8700],backgroundColor:'#4a90d9',borderRadius:4}]},options:{...base,indexAxis:'y',scales:{x:{ticks:{color:muted,font:{size:11}},grid:{color:grid}},y:{ticks:{color:muted,font:{size:10}},grid:{display:false}}}}});
+
+new Chart(document.getElementById('yoyChart'),{type:'bar',data:{labels:['2016','2017','2018','2019','2020','2021','2022','2023','2024'],datasets:[{data:[43.4,52.6,0.4,0.9,47.6,12.7,69.4,44.6,-33.6],backgroundColor:(ctx)=>ctx.raw<0?'#e34948':'#4a90d9',borderRadius:4}]},options:{...base}});
+
+new Chart(document.getElementById('mlChart'),{type:'bar',data:{labels:['Bank Accts','Credit Card','Credit Rep','Debt Coll','Loans'],datasets:[{label:'Precision',data:[0.81,0.82,0.88,0.80,0.85],backgroundColor:'#4a90d9',borderRadius:4},{label:'Recall',data:[0.84,0.64,0.96,0.62,0.76],backgroundColor:'#1baf7a',borderRadius:4},{label:'F1',data:[0.82,0.72,0.92,0.70,0.80],backgroundColor:'#eda100',borderRadius:4}]},options:{...base,scales:{x:{ticks:{color:muted,font:{size:10}},grid:{display:false}},y:{min:0,max:1,ticks:{color:muted,font:{size:11}},grid:{color:grid}}}}});
+</script>
+</body>
+</html>
