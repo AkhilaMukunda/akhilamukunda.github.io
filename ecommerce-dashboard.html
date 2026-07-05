@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-commerce Analytics - Akhila Mukunda</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f0f0e;
+  --surface:#1a1a19;
+  --text:#f0efe9;
+  --muted:#898781;
+  --accent:#4a90d9;
+  --accent-light:#0d2340;
+  --border:#2c2c2a;
+  --tag-bg:#242422;
+  --success:#1baf7a;
+  --success-light:#0a2e1f;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+nav{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;z-index:100}
+.back-btn{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.back-btn:hover{color:var(--text);text-decoration:none}
+.nav-title{font-size:13px;color:var(--muted);font-family:'DM Mono',monospace}
+.hero{max-width:900px;margin:0 auto;padding:3rem 2rem 2rem}
+.eyebrow{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
+.hero h1{font-size:clamp(1.5rem,3.5vw,2.25rem);font-weight:400;line-height:1.2;margin-bottom:1rem;letter-spacing:-0.01em}
+.hero-desc{font-size:15px;color:var(--muted);max-width:620px;line-height:1.7;margin-bottom:1.5rem}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:2rem}
+.tag{font-family:'DM Mono',monospace;font-size:11px;background:var(--tag-bg);color:var(--muted);padding:3px 10px;border-radius:4px;border:1px solid var(--border)}
+.tag-accent{background:var(--accent-light);color:var(--accent);border-color:var(--accent-light)}
+.content{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:2rem}
+.metric{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem}
+.metric-label{font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.metric-value{font-size:24px;font-weight:500;color:var(--text)}
+.metric-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin-bottom:1rem}
+.chart-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.chart-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:1rem}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px;font-size:12px;color:var(--muted)}
+.legend-item{display:flex;align-items:center;gap:5px}
+.legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.insight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-bottom:2rem}
+.insight-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
+.insight-label{font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px}
+.insight-stat{font-size:20px;font-weight:500;color:var(--accent);margin-bottom:4px}
+.insight-text{font-size:14px;color:var(--text);line-height:1.6}
+.section-divider{border:none;border-top:1px solid var(--border);margin:2rem 0}
+footer{max-width:900px;margin:0 auto;padding:1.5rem 2rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-text{font-size:13px;color:var(--muted)}
+.footer-links{display:flex;gap:1.5rem;font-size:13px}
+.footer-links a{color:var(--muted)}
+.footer-links a:hover{color:var(--text);text-decoration:none}
+@media(max-width:600px){.chart-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="back-btn" href="index.html">← Back to portfolio</a>
+  <span class="nav-title">e-commerce analytics</span>
+</nav>
+
+<section class="hero">
+  <p class="eyebrow">Project - E-commerce</p>
+  <h1>E-commerce Operations Analytics<br>- Olist Brazil</h1>
+  <p class="hero-desc">End-to-end analysis of 99,000+ real Brazilian e-commerce orders covering revenue trends, delivery performance, payment analysis, and NLP-based review sentiment classification.</p>
+  <div class="tag-row">
+    <span class="tag tag-accent">Python</span>
+    <span class="tag tag-accent">SQL</span>
+    <span class="tag tag-accent">Scikit-learn</span>
+    <span class="tag tag-accent">NLP</span>
+    <span class="tag tag-accent">Matplotlib</span>
+    <span class="tag tag-accent">Seaborn</span>
+    <span class="tag">Dataset: Olist Brazilian E-Commerce</span>
+    <span class="tag">99,000+ orders</span>
+    <span class="tag">9 tables</span>
+  </div>
+</section>
+
+<div class="content">
+
+  <div class="metrics">
+    <div class="metric"><div class="metric-label">total orders</div><div class="metric-value">99,441</div><div class="metric-sub">2016–2018</div></div>
+    <div class="metric"><div class="metric-label">on-time delivery</div><div class="metric-value">90%</div><div class="metric-sub">115k delivered orders</div></div>
+    <div class="metric"><div class="metric-label">avg order value</div><div class="metric-value">R$141</div><div class="metric-sub">incl. freight</div></div>
+    <div class="metric"><div class="metric-label">avg review score</div><div class="metric-value">4.02</div><div class="metric-sub">out of 5</div></div>
+    <div class="metric"><div class="metric-label">sentiment accuracy</div><div class="metric-value">93%</div><div class="metric-sub">NLP classifier</div></div>
+    <div class="metric"><div class="metric-label">monthly growth</div><div class="metric-value">R$56k</div><div class="metric-sub">R²=0.87</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-label">revenue trend</div>
+    <div class="chart-title">Monthly revenue (R$)</div>
+    <div class="legend"><span class="legend-item"><span class="legend-dot" style="background:#4a90d9"></span>monthly revenue</span></div>
+    <div style="position:relative;width:100%;height:220px">
+      <canvas id="revenueChart" role="img" aria-label="Line chart showing monthly revenue growing from 2016 to late 2018 then dropping.">Revenue peaked in late 2018 before dropping.</canvas>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-label">volume</div>
+      <div class="chart-title">Order status breakdown</div>
+      <div style="position:relative;width:100%;height:200px">
+        <canvas id="statusChart" role="img" aria-label="Horizontal bar chart of order statuses. Delivered dominates.">115,723 orders delivered.</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-label">satisfaction</div>
+      <div class="chart-title">Review score distribution</div>
+      <div style="position:relative;width:100%;height:200px">
+        <canvas id="reviewChart" role="img" aria-label="Bar chart of review scores 1-5. Score 5 dominates.">Most reviews are 5 stars.</canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-label">payments</div>
+      <div class="chart-title">Revenue by payment type (R$)</div>
+      <div style="position:relative;width:100%;height:220px">
+        <canvas id="payChart" role="img" aria-label="Bar chart of revenue by payment type. Credit card leads at R$15.7M.">Credit card accounts for 75% of revenue.</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-label">geography</div>
+      <div class="chart-title">On-time delivery rate by state (%)</div>
+      <div style="position:relative;width:100%;height:220px">
+        <canvas id="stateChart" role="img" aria-label="Horizontal bar chart of on-time delivery rates by state. All between 87-96%.">São Paulo leads with 94.9% on-time rate.</canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-label">machine learning</div>
+      <div class="chart-title">Sentiment classifier performance (93% accuracy)</div>
+      <div class="legend">
+        <span class="legend-item"><span class="legend-dot" style="background:#4a90d9"></span>precision</span>
+        <span class="legend-item"><span class="legend-dot" style="background:#1baf7a"></span>recall</span>
+        <span class="legend-item"><span class="legend-dot" style="background:#eda100"></span>F1 score</span>
+      </div>
+      <div style="position:relative;width:100%;height:200px">
+        <canvas id="mlChart" role="img" aria-label="Grouped bar chart of precision, recall, F1 for negative and positive sentiment.">Positive reviews classified with F1 of 0.95.</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-label">statistical finding</div>
+      <div class="chart-title">Review score by delivery timeliness</div>
+      <div class="legend">
+        <span class="legend-item"><span class="legend-dot" style="background:#1baf7a"></span>on-time</span>
+        <span class="legend-item"><span class="legend-dot" style="background:#e34948"></span>late</span>
+      </div>
+      <div style="position:relative;width:100%;height:200px">
+        <canvas id="timelinessChart" role="img" aria-label="Bar chart comparing average review scores for on-time vs late deliveries. On-time: 4.21, Late: 2.32.">Nearly 2-point difference in review scores between on-time and late deliveries.</canvas>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <div class="insight-grid">
+    <div class="insight-card">
+      <div class="insight-label">Hypothesis test</div>
+      <div class="insight-stat">T=152.9, p≈0</div>
+      <div class="insight-text">On-time deliveries score 4.21/5 vs 2.32/5 for late ones - a statistically significant difference confirmed via independent samples t-test.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">Correlation</div>
+      <div class="insight-stat">r=-0.22, p≈0</div>
+      <div class="insight-text">Each additional day of delivery delay correlates with a lower review score - Pearson correlation confirmed across 115,000 delivered orders.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">Revenue trend</div>
+      <div class="insight-stat">R²=0.87</div>
+      <div class="insight-text">Linear regression confirms revenue grew at R$56,613 per month - a strong, consistent upward trend across the dataset period.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-text">Akhila Mukunda - Data Analyst</span>
+  <div class="footer-links">
+    <a href="index.html">Portfolio</a>
+    <a href="https://github.com/AkhilaMukunda/ecommerce-analytics" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/akhilamukunda/" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const muted='#898781';
+const grid='#2c2c2a';
+const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:muted,font:{size:11}},grid:{color:grid}},y:{ticks:{color:muted,font:{size:11}},grid:{color:grid}}}};
+
+const months=['Jan 17','Feb 17','Mar 17','Apr 17','May 17','Jun 17','Jul 17','Aug 17','Sep 17','Oct 17','Nov 17','Dec 17','Jan 18','Feb 18','Mar 18','Apr 18','May 18','Jun 18','Jul 18','Aug 18'];
+const revenue=[138324,286678,442061,414527,614886,518076,610665,680859,746898,812000,1050000,1240000,1220000,1180000,1190000,1150000,1120000,1080000,950000,120000];
+
+new Chart(document.getElementById('revenueChart'),{type:'line',data:{labels:months,datasets:[{data:revenue,borderColor:'#4a90d9',backgroundColor:'rgba(74,144,217,0.08)',borderWidth:2,pointRadius:3,pointBackgroundColor:'#4a90d9',fill:true,tension:0.3}]},options:{...base,scales:{x:{ticks:{color:muted,font:{size:10},maxRotation:45},grid:{color:grid}},y:{ticks:{color:muted,font:{size:11},callback:(v)=>'R$'+Math.round(v/1000)+'k'},grid:{color:grid}}}}});
+
+new Chart(document.getElementById('statusChart'),{type:'bar',data:{labels:['Delivered','Shipped','Canceled','Unavailable','Invoiced'],datasets:[{data:[115723,1256,750,652,378],backgroundColor:'#4a90d9',borderRadius:4}]},options:{...base,indexAxis:'y',scales:{x:{ticks:{color:muted,font:{size:11}},grid:{color:grid}},y:{ticks:{color:muted,font:{size:10}},grid:{display:false}}}}});
+
+new Chart(document.getElementById('reviewChart'),{type:'bar',data:{labels:['1','2','3','4','5'],datasets:[{data:[15130,4610,9870,22140,66940],backgroundColor:['#e34948','#e34948','#eda100','#1baf7a','#1baf7a'],borderRadius:4}]},options:{...base}});
+
+new Chart(document.getElementById('payChart'),{type:'bar',data:{labels:['Credit card','Boleto','Voucher','Debit card'],datasets:[{data:[15775451,4110921,435918,257375],backgroundColor:'#4a90d9',borderRadius:4}]},options:{...base,scales:{x:{ticks:{color:muted,font:{size:10}},grid:{display:false}},y:{ticks:{color:muted,font:{size:11},callback:(v)=>'R$'+Math.round(v/1000000)+'M'},grid:{color:grid}}}}});
+
+new Chart(document.getElementById('stateChart'),{type:'bar',data:{labels:['SP','RJ','MG','RS','PR','SC','BA','DF','GO','ES'],datasets:[{data:[94.9,87.6,95.0,93.7,95.6,91.0,87.1,93.2,93.1,88.3],backgroundColor:'#1baf7a',borderRadius:4}]},options:{...base,indexAxis:'y',scales:{x:{min:80,max:100,ticks:{color:muted,font:{size:11}},grid:{color:grid}},y:{ticks:{color:muted,font:{size:10}},grid:{display:false}}}}});
+
+new Chart(document.getElementById('mlChart'),{type:'bar',data:{labels:['Negative','Positive'],datasets:[{label:'Precision',data:[0.86,0.95],backgroundColor:'#4a90d9',borderRadius:4},{label:'Recall',data:[0.89,0.94],backgroundColor:'#1baf7a',borderRadius:4},{label:'F1',data:[0.88,0.95],backgroundColor:'#eda100',borderRadius:4}]},options:{...base,scales:{x:{ticks:{color:muted,font:{size:11}},grid:{display:false}},y:{min:0,max:1,ticks:{color:muted,font:{size:11}},grid:{color:grid}}}}});
+
+new Chart(document.getElementById('timelinessChart'),{type:'bar',data:{labels:['On-time','Late'],datasets:[{data:[4.21,2.32],backgroundColor:['#1baf7a','#e34948'],borderRadius:4}]},options:{...base,scales:{x:{ticks:{color:muted,font:{size:11}},grid:{display:false}},y:{min:0,max:5,ticks:{color:muted,font:{size:11}},grid:{color:grid}}}}});
+</script>
+</body>
+</html>
