@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supply Chain Analytics — Akhila Mukunda</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f0f0e;
+  --surface:#1a1a19;
+  --text:#f0efe9;
+  --muted:#898781;
+  --accent:#4a90d9;
+  --accent-light:#0d2340;
+  --border:#2c2c2a;
+  --tag-bg:#242422;
+  --success:#1baf7a;
+  --danger:#e34948;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+nav{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;z-index:100}
+.back-btn{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.back-btn:hover{color:var(--text);text-decoration:none}
+.nav-title{font-size:13px;color:var(--muted);font-family:'DM Mono',monospace}
+.hero{max-width:900px;margin:0 auto;padding:3rem 2rem 2rem}
+.eyebrow{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
+.hero h1{font-size:clamp(1.5rem,3.5vw,2.25rem);font-weight:400;line-height:1.2;margin-bottom:1rem;letter-spacing:-0.01em}
+.hero-desc{font-size:15px;color:var(--muted);max-width:620px;line-height:1.7;margin-bottom:1.5rem}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:2rem}
+.tag{font-family:'DM Mono',monospace;font-size:11px;background:var(--tag-bg);color:var(--muted);padding:3px 10px;border-radius:4px;border:1px solid var(--border)}
+.tag-accent{background:var(--accent-light);color:var(--accent);border-color:var(--accent-light)}
+.content{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:2rem}
+.metric{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem}
+.metric-label{font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.metric-value{font-size:24px;font-weight:500;color:var(--text)}
+.metric-value.danger{color:var(--danger)}
+.metric-value.success{color:var(--success)}
+.metric-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin-bottom:1rem}
+.chart-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.chart-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:1rem}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px;font-size:12px;color:var(--muted)}
+.legend-item{display:flex;align-items:center;gap:5px}
+.legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.insight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-bottom:2rem}
+.insight-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
+.insight-label{font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px}
+.insight-stat{font-size:20px;font-weight:500;color:var(--accent);margin-bottom:4px}
+.insight-stat.danger{color:var(--danger)}
+.insight-text{font-size:14px;color:var(--text);line-height:1.6}
+.section-divider{border:none;border-top:1px solid var(--border);margin:2rem 0}
+footer{max-width:900px;margin:0 auto;padding:1.5rem 2rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-text{font-size:13px;color:var(--muted)}
+.footer-links{display:flex;gap:1.5rem;font-size:13px}
+.footer-links a{color:var(--muted)}
+.footer-links a:hover{color:var(--text);text-decoration:none}
+@media(max-width:600px){.chart-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="back-btn" href="index.html">← Back to portfolio</a>
+  <span class="nav-title">supply chain analytics</span>
+</nav>
+
+<section class="hero">
+  <p class="eyebrow">Project — Supply Chain</p>
+  <h1>Supply Chain Performance<br>& Demand Forecasting</h1>
+  <p class="hero-desc">End-to-end analysis of 180,000+ supply chain orders covering sales performance, delivery risk, market profitability, and demand forecasting across global markets.</p>
+  <div class="tag-row">
+    <span class="tag tag-accent">Python</span>
+    <span class="tag tag-accent">SQL</span>
+    <span class="tag tag-accent">Scipy</span>
+    <span class="tag tag-accent">Scikit-learn</span>
+    <span class="tag tag-accent">Matplotlib</span>
+    <span class="tag tag-accent">Seaborn</span>
+    <span class="tag">Dataset: DataCo Smart Supply Chain</span>
+    <span class="tag">180,000+ orders</span>
+    <span class="tag">53 features</span>
+  </div>
+</section>
+
+<div class="content">
+
+  <div class="metrics">
+    <div class="metric"><div class="metric-label">total orders</div><div class="metric-value">180,519</div><div class="metric-sub">across 5 markets</div></div>
+    <div class="metric"><div class="metric-label">total sales</div><div class="metric-value">$36.7M</div><div class="metric-sub">2015–2018</div></div>
+    <div class="metric"><div class="metric-label">avg profit margin</div><div class="metric-value success">10.9%</div><div class="metric-sub">across all markets</div></div>
+    <div class="metric"><div class="metric-label">first class late</div><div class="metric-value danger">95.3%</div><div class="metric-sub">critical finding</div></div>
+    <div class="metric"><div class="metric-label">top market</div><div class="metric-value">Europe</div><div class="metric-sub">$10.8M revenue</div></div>
+    <div class="metric"><div class="metric-label">top product</div><div class="metric-value">$6.9M</div><div class="metric-sub">Field & Stream Safe</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-label">trend</div>
+    <div class="chart-title">Monthly sales trend & forecast</div>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#4a90d9"></span>actual sales</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#e34948"></span>trend line</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#eda100"></span>forecast</span>
+    </div>
+    <div style="position:relative;width:100%;height:220px">
+      <canvas id="salesChart" role="img" aria-label="Line chart showing monthly sales trend from 2015 to 2018 with forecast for next 3 months.">Sales trend with 3-month demand forecast.</canvas>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-label">delivery</div>
+      <div class="chart-title">Delivery status breakdown</div>
+      <div style="position:relative;width:100%;height:200px">
+        <canvas id="deliveryChart" role="img" aria-label="Horizontal bar chart of delivery statuses. Late delivery dominates.">Late delivery accounts for the majority of orders.</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-label">shipping risk</div>
+      <div class="chart-title">Late delivery risk by shipping mode (%)</div>
+      <div style="position:relative;width:100%;height:200px">
+        <canvas id="shippingChart" role="img" aria-label="Bar chart of late delivery risk by shipping mode. First Class at 95.3%.">First Class has the highest late delivery risk at 95.3%.</canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-label">market performance</div>
+      <div class="chart-title">Total sales by market ($)</div>
+      <div style="position:relative;width:100%;height:220px">
+        <canvas id="marketChart" role="img" aria-label="Horizontal bar chart of sales by market. Europe leads.">Europe leads with $10.8M in total sales.</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-label">profitability</div>
+      <div class="chart-title">Top 10 categories by profit ($)</div>
+      <div style="position:relative;width:100%;height:220px">
+        <canvas id="categoryChart" role="img" aria-label="Horizontal bar chart of top 10 categories by profit. Fishing leads.">Fishing is the most profitable category.</canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-label">top products</div>
+    <div class="chart-title">Top 5 products by revenue ($)</div>
+    <div style="position:relative;width:100%;height:200px">
+      <canvas id="productChart" role="img" aria-label="Horizontal bar chart of top 5 products by revenue. Field and Stream Safe leads at $6.9M.">Field & Stream Safe leads with $6.9M in revenue.</canvas>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <div class="insight-grid">
+    <div class="insight-card">
+      <div class="insight-label">Critical finding</div>
+      <div class="insight-stat danger">95.3%</div>
+      <div class="insight-text">First Class shipping has a 95.3% late delivery rate — the highest of any shipping mode, despite being the premium option. A major operational red flag.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">Statistical finding</div>
+      <div class="insight-stat">p=0.67</div>
+      <div class="insight-text">Discount rate has no statistically significant impact on delivery timeliness — discounting strategy is operationally neutral with respect to shipping performance.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">Demand forecast</div>
+      <div class="insight-stat">$895k</div>
+      <div class="insight-text">Forecasted monthly sales for the next period based on linear trend analysis. Sales show a slight declining trend (R²=0.12) suggesting non-linear demand patterns.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-text">Akhila Mukunda — Data Analyst</span>
+  <div class="footer-links">
+    <a href="index.html">Portfolio</a>
+    <a href="https://github.com/YOUR-GITHUB-USERNAME/supply-chain-analytics" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/YOUR-LINKEDIN-URL" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const muted='#898781';
+const grid='#2c2c2a';
+const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:muted,font:{size:11}},grid:{color:grid}},y:{ticks:{color:muted,font:{size:11}},grid:{color:grid}}}};
+
+const months=Array.from({length:37},(_,i)=>i);
+const actualSales=[950000,1020000,1010000,990000,1050000,1030000,1000000,1080000,1010000,990000,1020000,1100000,1050000,1030000,1010000,1090000,1020000,1000000,1080000,1110000,1050000,1030000,1010000,1090000,1050000,1030000,1010000,1090000,1100000,1050000,1030000,1010000,1090000,1050000,350000,895636,890450];
+const trendLine=months.map(i=>1020000+(i*-5187));
+const forecastPoints=Array(35).fill(null).concat([895636,890450,885263]);
+
+new Chart(document.getElementById('salesChart'),{type:'line',data:{labels:months,datasets:[{data:actualSales.slice(0,35),borderColor:'#4a90d9',backgroundColor:'rgba(74,144,217,0.08)',borderWidth:2,pointRadius:2,fill:true,tension:0.3,label:'Actual'},{data:trendLine,borderColor:'#e34948',borderWidth:1.5,borderDash:[5,5],pointRadius:0,fill:false,label:'Trend'},{data:forecastPoints,borderColor:'#eda100',backgroundColor:'#eda100',pointRadius:(ctx)=>ctx.dataIndex>=34?6:0,pointBackgroundColor:'#eda100',borderWidth:0,fill:false,label:'Forecast'}]},options:{...base,plugins:{legend:{display:false}},scales:{x:{ticks:{color:muted,font:{size:11}},grid:{color:grid}},y:{ticks:{color:muted,font:{size:11},callback:(v)=>'$'+Math.round(v/1000)+'k'},grid:{color:grid}}}}});
+
+new Chart(document.getElementById('deliveryChart'),{type:'bar',data:{labels:['Late delivery','Advance shipping','Shipping on time','Shipping canceled'],datasets:[{data:[99999,38994,37791,3735],backgroundColor:['#e34948','#4a90d9','#1baf7a','#898781'],borderRadius:4}]},options:{...base,indexAxis:'y',scales:{x:{ticks:{color:muted,font:{size:11}},grid:{color:grid}},y:{ticks:{color:muted,font:{size:10}},grid:{display:false}}}}});
+
+new Chart(document.getElementById('shippingChart'),{type:'bar',data:{labels:['First Class','Second Class','Same Day','Standard Class'],datasets:[{data:[95.3,76.6,45.7,38.1],backgroundColor:['#e34948','#e34948','#1baf7a','#1baf7a'],borderRadius:4}]},options:{...base,scales:{x:{ticks:{color:muted,font:{size:10}},grid:{display:false}},y:{min:0,max:100,ticks:{color:muted,font:{size:11}},grid:{color:grid}}}}});
+
+new Chart(document.getElementById('marketChart'),{type:'bar',data:{labels:['Africa','USCA','Pacific Asia','LATAM','Europe'],datasets:[{data:[2294452,5066528,8273743,10277612,10872396],backgroundColor:'#4a90d9',borderRadius:4}]},options:{...base,indexAxis:'y',scales:{x:{ticks:{color:muted,font:{size:11},callback:(v)=>'$'+Math.round(v/1000000)+'M'},grid:{color:grid}},y:{ticks:{color:muted,font:{size:10}},grid:{display:false}}}}});
+
+new Chart(document.getElementById('categoryChart'),{type:'bar',data:{labels:['Computers','Shop By Sport','Men\'s Footwear','Indoor/Outdoor','Water Sports','Women\'s Apparel','Cardio Equipment','Camping & Hiking','Cleats','Fishing'],datasets:[{data:[80000,120000,280000,290000,300000,320000,340000,420000,580000,720000],backgroundColor:'#4a90d9',borderRadius:4}]},options:{...base,indexAxis:'y',scales:{x:{ticks:{color:muted,font:{size:11},callback:(v)=>'$'+Math.round(v/1000)+'k'},grid:{color:grid}},y:{ticks:{color:muted,font:{size:10}},grid:{display:false}}}}});
+
+new Chart(document.getElementById('productChart'),{type:'bar',data:{labels:['Nike Dri-FIT Polo','Nike Free 5.0+','Diamondback Women\'s Bike','Perfect Rip Deck','Field & Stream Safe'],datasets:[{data:[3147800,3667633,4118425,4421143,6929653],backgroundColor:'#4a90d9',borderRadius:4}]},options:{...base,indexAxis:'y',scales:{x:{ticks:{color:muted,font:{size:11},callback:(v)=>'$'+Math.round(v/1000000)+'M'},grid:{color:grid}},y:{ticks:{color:muted,font:{size:10}},grid:{display:false}}}}});
+</script>
+</body>
+</html>
