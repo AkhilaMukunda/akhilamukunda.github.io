@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RBI MIS Dashboard - Akhila Mukunda</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f0f0e;
+  --surface:#1a1a19;
+  --text:#f0efe9;
+  --muted:#898781;
+  --accent:#4a90d9;
+  --accent-light:#0d2340;
+  --border:#2c2c2a;
+  --tag-bg:#242422;
+  --success:#1baf7a;
+  --danger:#e34948;
+  --warning:#eda100;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+nav{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;z-index:100}
+.back-btn{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.back-btn:hover{color:var(--text);text-decoration:none}
+.nav-title{font-size:13px;color:var(--muted);font-family:'DM Mono',monospace}
+.hero{max-width:900px;margin:0 auto;padding:3rem 2rem 2rem}
+.eyebrow{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
+.hero h1{font-size:clamp(1.5rem,3.5vw,2.25rem);font-weight:400;line-height:1.2;margin-bottom:1rem;letter-spacing:-0.01em}
+.hero-desc{font-size:15px;color:var(--muted);max-width:620px;line-height:1.7;margin-bottom:1.5rem}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:2rem}
+.tag{font-family:'DM Mono',monospace;font-size:11px;background:var(--tag-bg);color:var(--muted);padding:3px 10px;border-radius:4px;border:1px solid var(--border)}
+.tag-accent{background:var(--accent-light);color:var(--accent);border-color:var(--accent-light)}
+.content{max-width:900px;margin:0 auto;padding:0 2rem 4rem}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:2rem}
+.metric{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem}
+.metric-label{font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.metric-value{font-size:24px;font-weight:500;color:var(--text)}
+.metric-value.danger{color:var(--danger)}
+.metric-value.success{color:var(--success)}
+.metric-value.warning{color:var(--warning)}
+.metric-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem;margin-bottom:1rem}
+.chart-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.chart-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:1rem}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px;font-size:12px;color:var(--muted)}
+.legend-item{display:flex;align-items:center;gap:5px}
+.legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.insight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-bottom:2rem}
+.insight-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
+.insight-label{font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px}
+.insight-stat{font-size:20px;font-weight:500;color:var(--accent);margin-bottom:4px}
+.insight-stat.danger{color:var(--danger)}
+.insight-stat.success{color:var(--success)}
+.insight-text{font-size:14px;color:var(--text);line-height:1.6}
+.section-divider{border:none;border-top:1px solid var(--border);margin:2rem 0}
+footer{max-width:900px;margin:0 auto;padding:1.5rem 2rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-text{font-size:13px;color:var(--muted)}
+.footer-links{display:flex;gap:1.5rem;font-size:13px}
+.footer-links a{color:var(--muted)}
+.footer-links a:hover{color:var(--text);text-decoration:none}
+@media(max-width:600px){.chart-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="back-btn" href="index.html">← Back to portfolio</a>
+  <span class="nav-title">rbi mis dashboard</span>
+</nav>
+
+<section class="hero">
+  <p class="eyebrow">Project - MIS & Regulatory Analytics</p>
+  <h1>Indian Banking Sector<br>MIS Supervisory Dashboard</h1>
+  <p class="hero-desc">End-to-end MIS supervisory analysis of Indian scheduled commercial banks using real RBI published data (2005–2025), covering NPA movement, earnings trends, write-off analysis, and recovery rate forecasting across 146 banks.</p>
+  <div class="tag-row">
+    <span class="tag tag-accent">Python</span>
+    <span class="tag tag-accent">SQL</span>
+    <span class="tag tag-accent">Pandas</span>
+    <span class="tag tag-accent">Scipy</span>
+    <span class="tag tag-accent">Matplotlib</span>
+    <span class="tag">Data: RBI Statistical Tables</span>
+    <span class="tag">146 banks</span>
+    <span class="tag">2005–2025</span>
+  </div>
+</section>
+
+<div class="content">
+
+  <div class="metrics">
+    <div class="metric"><div class="metric-label">banks covered</div><div class="metric-value">146</div><div class="metric-sub">scheduled commercial banks</div></div>
+    <div class="metric"><div class="metric-label">data period</div><div class="metric-value">21 yrs</div><div class="metric-sub">2005–2025</div></div>
+    <div class="metric"><div class="metric-label">peak gross NPA</div><div class="metric-value danger">₹18.5L Cr</div><div class="metric-sub">2018 crisis peak</div></div>
+    <div class="metric"><div class="metric-label">current gross NPA</div><div class="metric-value success">₹8.6L Cr</div><div class="metric-sub">2025 - significant recovery</div></div>
+    <div class="metric"><div class="metric-label">NPA/income peak</div><div class="metric-value danger">56.28%</div><div class="metric-sub">2016–2020 avg</div></div>
+    <div class="metric"><div class="metric-label">forecast 2026</div><div class="metric-value warning">43.72%</div><div class="metric-sub">recovery rate</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-label">NPA trend</div>
+    <div class="chart-title">Gross NPA movement - Indian scheduled commercial banks (₹ Lakh Crore)</div>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#e34948"></span>gross NPA</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#2c2c2a;border:1px dashed #898781"></span>2018 peak</span>
+    </div>
+    <div style="position:relative;width:100%;height:240px">
+      <canvas id="npaChart" role="img" aria-label="Area chart showing gross NPA rising from 2005 to peak in 2018 then declining to 2025.">Gross NPA peaked at ₹18.5 lakh crore in 2018 and has since declined to ₹8.6 lakh crore.</canvas>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-label">income vs stress</div>
+      <div class="chart-title">Total income vs NPA additions (₹ Lakh Crore)</div>
+      <div class="legend">
+        <span class="legend-item"><span class="legend-dot" style="background:#4a90d9"></span>total income</span>
+        <span class="legend-item"><span class="legend-dot" style="background:#e34948"></span>NPA additions</span>
+      </div>
+      <div style="position:relative;width:100%;height:200px">
+        <canvas id="incomeNpaChart" role="img" aria-label="Line chart comparing total income growth vs NPA additions over time.">Income grew consistently while NPA additions peaked in 2018 and declined after.</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-label">write-offs</div>
+      <div class="chart-title">Total write-offs by year (₹ Lakh Crore)</div>
+      <div style="position:relative;width:100%;height:200px">
+        <canvas id="writeoffChart" role="img" aria-label="Bar chart of write-offs by year. Peaked around 2019-2020.">Write-offs surged post-2015 as banks cleaned balance sheets.</canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-label">bank ranking</div>
+      <div class="chart-title">Top 10 banks by gross NPA (2025, ₹ Crore)</div>
+      <div style="position:relative;width:100%;height:260px">
+        <canvas id="topNpaChart" role="img" aria-label="Horizontal bar chart of top 10 banks by gross NPA in 2025. SBI leads.">State Bank of India has the highest gross NPA at ₹76,880 crore.</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-label">income ranking</div>
+      <div class="chart-title">Top 10 banks by total income (2025, ₹ Crore)</div>
+      <div style="position:relative;width:100%;height:260px">
+        <canvas id="topIncomeChart" role="img" aria-label="Horizontal bar chart of top 10 banks by total income in 2025.">Public Sector Banks collectively lead total income.</canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-label">forecasting</div>
+    <div class="chart-title">NPA recovery rate trend & 2026 forecast (%)</div>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#4a90d9"></span>actual recovery rate</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#e34948"></span>trend line</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#eda100"></span>2026 forecast</span>
+    </div>
+    <div style="position:relative;width:100%;height:220px">
+      <canvas id="forecastChart" role="img" aria-label="Line chart showing NPA recovery rate over time with 2026 forecast point at 43.72%.">Forecasted NPA recovery rate for 2026 is 43.72%.</canvas>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <div class="insight-grid">
+    <div class="insight-card">
+      <div class="insight-label">Crisis peak</div>
+      <div class="insight-stat danger">₹18.5L Cr</div>
+      <div class="insight-text">Gross NPA peaked in 2018 - the worst banking stress period in India's post-liberalisation history, driven by infrastructure and power sector defaults.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">Statistical finding</div>
+      <div class="insight-stat">r=0.55, p<0.01</div>
+      <div class="insight-text">NPA additions correlate positively with total income growth - systemic stress scaled proportionally with sector expansion, a key policy insight.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-label">Sector recovery</div>
+      <div class="insight-stat success">-53% NPAs</div>
+      <div class="insight-text">Gross NPAs declined from ₹18.5L crore in 2018 to ₹8.6L crore in 2025 - a 53% reduction reflecting IBC resolution, write-offs, and improved credit discipline.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-text">Akhila Mukunda - Data Analyst</span>
+  <div class="footer-links">
+    <a href="index.html">Portfolio</a>
+    <a href="https://github.com/YOUR-GITHUB-USERNAME/rbi-mis-dashboard" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/YOUR-LINKEDIN-URL" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const muted='#898781';
+const grid='#2c2c2a';
+const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:muted,font:{size:11}},grid:{color:grid}},y:{ticks:{color:muted,font:{size:11}},grid:{color:grid}}}};
+
+const years=[2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+const grossNpa=[1.19,1.02,1.01,1.13,1.37,1.69,1.96,2.86,3.88,5.29,6.47,12.24,15.84,18.56,18.23,17.30,13.77,14.87,11.43,9.62,8.63];
+const totalIncome=[3.80,4.42,5.49,7.38,9.27,9.89,11.42,14.83,17.23,19.38,21.46,22.70,24.11,21.70,26.21,28.80,26.50,30.27,36.20,46.74,52.87];
+const npaAdditions=[0.41,0.43,0.52,0.70,1.05,1.39,1.41,2.15,2.76,3.80,4.17,8.84,8.32,10.48,5.98,7.11,4.94,5.67,4.42,4.27,4.53];
+const writeoffs=[0.01,0.02,0.03,0.05,0.07,0.09,0.13,0.20,0.27,0.35,0.58,1.09,2.28,2.77,3.64,4.54,4.57,3.59,3.53,4.48,3.18];
+
+new Chart(document.getElementById('npaChart'),{type:'line',data:{labels:years,datasets:[{data:grossNpa,borderColor:'#e34948',backgroundColor:'rgba(227,73,72,0.15)',borderWidth:2.5,pointRadius:3,pointBackgroundColor:'#e34948',fill:true,tension:0.3}]},options:{...base,plugins:{legend:{display:false},annotation:{annotations:{peak:{type:'line',xMin:2018,xMax:2018,borderColor:'#898781',borderWidth:1,borderDash:[5,5]}}}},scales:{x:{ticks:{color:muted,font:{size:11}},grid:{color:grid}},y:{ticks:{color:muted,font:{size:11},callback:(v)=>'₹'+v+'L Cr'},grid:{color:grid}}}}});
+
+new Chart(document.getElementById('incomeNpaChart'),{type:'line',data:{labels:years,datasets:[{data:totalIncome,borderColor:'#4a90d9',borderWidth:2,pointRadius:2,fill:false,tension:0.3,label:'Income'},{data:npaAdditions,borderColor:'#e34948',borderWidth:2,pointRadius:2,fill:false,tension:0.3,label:'NPA Additions'}]},options:{...base,scales:{x:{ticks:{color:muted,font:{size:10}},grid:{color:grid}},y:{ticks:{color:muted,font:{size:11},callback:(v)=>'₹'+v+'L'},grid:{color:grid}}}}});
+
+new Chart(document.getElementById('writeoffChart'),{type:'bar',data:{labels:years,datasets:[{data:writeoffs,backgroundColor:'#4a90d9',borderRadius:3}]},options:{...base,scales:{x:{ticks:{color:muted,font:{size:10},maxRotation:45},grid:{display:false}},y:{ticks:{color:muted,font:{size:11},callback:(v)=>'₹'+v+'L'},grid:{color:grid}}}}});
+
+new Chart(document.getElementById('topNpaChart'),{type:'bar',data:{labels:['HDFC Bank','Canara Bank','Punjab National Bank','Union Bank','State Bank of India'],datasets:[{data:[35222,31530,44081,35350,76880],backgroundColor:'#e34948',borderRadius:4}]},options:{...base,indexAxis:'y',scales:{x:{ticks:{color:muted,font:{size:11},callback:(v)=>'₹'+Math.round(v/1000)+'k Cr'},grid:{color:grid}},y:{ticks:{color:muted,font:{size:10}},grid:{display:false}}}}});
+
+new Chart(document.getElementById('topIncomeChart'),{type:'bar',data:{labels:['Axis Bank','ICICI Bank','HDFC Bank','State Bank of India','Private Sector Banks'],datasets:[{data:[72000,128000,235000,383000,1020000],backgroundColor:'#4a90d9',borderRadius:4}]},options:{...base,indexAxis:'y',scales:{x:{ticks:{color:muted,font:{size:11},callback:(v)=>'₹'+Math.round(v/1000)+'k Cr'},grid:{color:grid}},y:{ticks:{color:muted,font:{size:10}},grid:{display:false}}}}});
+
+const recoveryYears=[2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+const recoveryRate=[50,78,63,57,55,52,40,38,36,50,62,60,55,45,52,38,57,55,50,56];
+const trendLine=recoveryYears.map((_,i)=>63-(i*0.97));
+const forecastData=Array(20).fill(null).concat([43.72]);
+
+new Chart(document.getElementById('forecastChart'),{type:'line',data:{labels:[...recoveryYears,2026],datasets:[{data:[...recoveryRate,null],borderColor:'#4a90d9',backgroundColor:'rgba(74,144,217,0.08)',borderWidth:2,pointRadius:3,pointBackgroundColor:'#4a90d9',fill:true,tension:0.3,label:'Actual'},{data:[...trendLine,trendLine[trendLine.length-1]-0.97],borderColor:'#e34948',borderWidth:1.5,borderDash:[5,5],pointRadius:0,fill:false,label:'Trend'},{data:forecastData,borderColor:'#eda100',backgroundColor:'#eda100',pointRadius:(ctx)=>ctx.dataIndex===20?8:0,pointBackgroundColor:'#eda100',borderWidth:0,fill:false,label:'Forecast'}]},options:{...base,scales:{x:{ticks:{color:muted,font:{size:11}},grid:{color:grid}},y:{ticks:{color:muted,font:{size:11},callback:(v)=>v+'%'},grid:{color:grid}}}}});
+</script>
+</body>
+</html>
